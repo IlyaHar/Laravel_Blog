@@ -12,7 +12,6 @@
 3. Copy all from .env.example, create .env and paste it there. Then configure database, mail and Google api for oAuth2
     *For mail you can use MailTrap or other such services*
 
-## Getting Started
 > php artisan key:generate
 
 > php artisan storage:link
@@ -26,5 +25,12 @@
 > php artisan queue:work
 
 > php artisan serve
+
+## Getting Started
+Sign in by admin and start to use this application
+
+> Email: admin@gmail.com
+
+> Password: test1234
 
 # Have a great time!

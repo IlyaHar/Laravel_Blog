@@ -27,8 +27,8 @@ class PostFactory extends Factory
             'title' => fake()->word,
             'content' => fake()->sentence,
             'category_id' => Category::factory(),
-            'preview_image' => $imageUrl,
-            'main_image' => $imageUrl
+            'preview_image' => 'https://streetphotography.com/wp-content/uploads/2017/08/test.png',
+            'main_image' => 'https://streetphotography.com/wp-content/uploads/2017/08/test.png'
         ];
     }
 }

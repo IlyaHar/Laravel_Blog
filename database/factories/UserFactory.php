@@ -26,15 +26,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $imageUrl = fake()->imageUrl(640, 480, 'animals');
-
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'avatar' => $imageUrl
+            'avatar' => 'https://streetphotography.com/wp-content/uploads/2017/08/test.png'
         ];
     }
 

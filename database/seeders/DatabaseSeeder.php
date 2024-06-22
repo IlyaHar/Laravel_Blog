@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'email_verified_at' => now(),
                 'password' => 'test1234',
-                'avatar' => fake()->imageUrl(640, 480, 'animals'),
+                'avatar' => 'https://streetphotography.com/wp-content/uploads/2017/08/test.png',
                 'role' => 0
             ]
         );
