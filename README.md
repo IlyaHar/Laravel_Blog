@@ -27,7 +27,7 @@
 > php artisan serve
 
 ## Getting Started
-Sign in by admin and start to use this application
+Sign in by admin and start to use this web application
 
 > Email: admin@gmail.com
 
