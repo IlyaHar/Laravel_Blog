@@ -15,9 +15,11 @@
 ## Getting Started
 > php artisan key:generate
 
+> php artisan storage:link
+
 > php artisan migrate --seed
 
-*After starting seeding you need to wait a little (3-5 minutes)*
+*After starting seeding you need to wait a little (30-60 seconds)*
 
 > npm run dev
 

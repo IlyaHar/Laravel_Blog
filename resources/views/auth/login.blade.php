@@ -70,8 +70,8 @@
                     <hr>
                     <strong><span class="d-flex justify-content-center">OR</span></strong>
                     <a class=" d-flex justify-content-center" href="{{ route('auth.google') }}">
-                        <div class="mt-3 border border-secondary pt-3 pb-1 border-2 rounded-3 w-50 text-center">
-                            <b><p class="text-dark h5">Sign In with <img class="mx-3" src="{{ Storage::url('/images/google.png') }}" alt=""></p>
+                        <div class="mt-3 border border-secondary pt-3 pb-1 border-2 rounded-3 w-50 text-center d-flex align-items-center justify-content-center">
+                            <b><p class="text-dark h5">Sign In with <i class="fab fa-google fa-lg mx-3" style="color: #0091ff; font-size: 35px"></i></p>
                             </b>
                         </div>
                     </a>

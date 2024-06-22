@@ -11,7 +11,7 @@
                 @foreach($posts as $post)
                     <div class="col-md-4 fetured-post blog-post" data-aos="fade-right">
                         <div class="blog-post-thumbnail-wrapper">
-                            <img src="{{ \Illuminate\Support\Facades\Storage::url($post->preview_image) }}" alt="blog post">
+                            <img src="{{ filter_var($post->preview_image, FILTER_VALIDATE_URL)  ? $post->preview_image : \Illuminate\Support\Facades\Storage::url($post->preview_image) }}" alt="blog post">
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="blog-post-category">{{ $post->category->title }}</p>
@@ -52,7 +52,7 @@
                         @foreach($randomPosts as $randomPost)
                             <div class="col-md-6 blog-post" data-aos="fade-up">
                                 <div class="blog-post-thumbnail-wrapper">
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($randomPost->preview_image) }}" alt="blog post">
+                                    <img src="{{ filter_var($randomPost->preview_image, FILTER_VALIDATE_URL) ? $randomPost->preview_image : \Illuminate\Support\Facades\Storage::url($randomPost->preview_image) }}" alt="blog post">
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="blog-post-category">{{ $randomPost->category->title }}</p>
@@ -96,7 +96,7 @@
                             </ol>
                             <div class="carousel-inner" role="listbox">
                                 <figure class="carousel-item active">
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($newPosts->first()->preview_image) }}" alt="First slide">
+                                    <img src="{{ filter_var($newPosts->first()->preview_image, FILTER_VALIDATE_URL) ? $newPosts->first()->preview_image : \Illuminate\Support\Facades\Storage::url($newPosts->first()->preview_image) }}" alt="First slide">
                                     <figcaption class="post-title">
                                         <div class="d-flex justify-content-between mx-2">
                                             <a href="{{ route('posts.show',  $newPosts->first()->id) }}">{{ $newPosts->first()->title }}</a>
@@ -129,7 +129,7 @@
                                                 @endphp
                                             @endif
                                     <div class="carousel-item">
-                                        <img src="{{ \Illuminate\Support\Facades\Storage::url($newPost->preview_image) }}" alt="First slide">
+                                        <img src="{{ filter_var($newPost->preview_image) ? $newPost->preview_image : \Illuminate\Support\Facades\Storage::url($newPost->preview_image) }}" alt="First slide">
                                         <figcaption class="post-title">
                                             <div class="d-flex justify-content-between mx-2">
                                                 <a href="{{ route('posts.show', $newPost->id) }}">{{ $newPost->title }}</a>
@@ -163,7 +163,7 @@
                         @foreach($popularPosts as $popularPost)
                             <li class="post">
                                 <a href="{{ route('posts.show', $popularPost->id) }}" class="post-permalink media">
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($popularPost->preview_image) }}" alt="blog post">
+                                    <img src="{{ filter_var($popularPost->preview_image, FILTER_VALIDATE_URL) ? $popularPost->preview_image : \Illuminate\Support\Facades\Storage::url($popularPost->preview_image) }}" alt="blog post">
                                     <div class="media-body">
                                         <h6 class="post-title">{{ $popularPost->title }}</h6>
                                         <small class="blog-post-category text-danger">Likes: {{ $popularPost->liked_users_count }}</small>

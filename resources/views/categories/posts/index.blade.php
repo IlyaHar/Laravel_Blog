@@ -11,7 +11,7 @@
                     @forelse($posts as $post)
                         <div class="col-md-4 fetured-post blog-post" data-aos="fade-right">
                             <div class="blog-post-thumbnail-wrapper">
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url($post->preview_image) }}" alt="blog post">
+                                <img src="{{ filter_var($post->preview_image, FILTER_VALIDATE_URL) ? $post->preview_image : \Illuminate\Support\Facades\Storage::url($post->preview_image) }}" alt="blog post">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p class="blog-post-category">{{ $post->category->title }}</p>

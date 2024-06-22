@@ -4,8 +4,10 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -19,18 +21,14 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $imagePath = fake()->image(null, 360, 360, 'animals', true);
-
-        $imageName = basename($imagePath);
-
-        Storage::disk('public')->putFileAs('images', new File( $imagePath),  $imageName);
+        $imageUrl = fake()->imageUrl(640, 480, 'animals');
 
         return [
             'title' => fake()->word,
             'content' => fake()->sentence,
             'category_id' => Category::factory(),
-            'preview_image' => 'images/' . $imageName,
-            'main_image' => 'images/' . $imageName
+            'preview_image' => $imageUrl,
+            'main_image' => $imageUrl
         ];
     }
 }

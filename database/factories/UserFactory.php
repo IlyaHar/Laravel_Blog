@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -25,11 +26,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $imagePath = fake()->image(null, 360, 360, 'animals', true);
-
-        $imageName = basename($imagePath);
-
-        Storage::disk('public')->putFileAs('images/avatars', new File( $imagePath),  $imageName);
+        $imageUrl = fake()->imageUrl(640, 480, 'animals');
 
         return [
             'name' => fake()->name(),
@@ -37,7 +34,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'avatar' => 'images/avatars/' . $imageName
+            'avatar' => $imageUrl
         ];
     }
 

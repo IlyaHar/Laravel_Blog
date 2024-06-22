@@ -11,7 +11,7 @@
         <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{ $date->format('F') }} {{ $date->day}}
             , {{ $date->year}} • {{ $date->format('h:i A') }} • Featured • {{ $post->comments->count() }} Comments</p>
         <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
-            <img src="{{ \Illuminate\Support\Facades\Storage::url($post->main_image) }}" alt="featured image"
+            <img src="{{ filter_var($post->main_image, FILTER_VALIDATE_URL) ? $post->main_image : \Illuminate\Support\Facades\Storage::url($post->main_image) }}" alt="featured image"
                  class="w-100">
         </section>
         @auth()
@@ -44,7 +44,7 @@
                     <div class="row">
                         @forelse($relatedPosts as $relatedPost)
                             <div class="col-md-4" data-aos="fade-left" data-aos-delay="100">
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url( $relatedPost->preview_image) }}"
+                                <img src="{{ filter_var($relatedPost->preview_image, FILTER_VALIDATE_URL) ? $relatedPost->preview_image : \Illuminate\Support\Facades\Storage::url( $relatedPost->preview_image) }}"
                                      alt="related post" class="post-thumbnail">
                                 <p class="post-category">{{ $relatedPost->category->title }}</p>
                                 <a href="{{ route('posts.show', $relatedPost->id) }}"><h5 class="post-title">{{ $relatedPost->title }}</h5></a>
