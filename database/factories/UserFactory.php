@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -23,12 +25,19 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $imagePath = fake()->image(null, 360, 360, 'animals', true);
+
+        $imageName = basename($imagePath);
+
+        Storage::disk('public')->putFileAs('images/avatars', new File( $imagePath),  $imageName);
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'avatar' => 'images/avatars/' . $imageName
         ];
     }
 
